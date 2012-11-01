@@ -31,6 +31,8 @@ call pathogen#helptags()
     inoremap # X#
 " Copy indentation from the line above when starting newline
     set autoindent       
+    set foldmethod=indent
+    set foldlevel=99
 " =============================== Highlighting related ==========================================="
     syntax on
 " Highlight parenthesis and braces matching pair
@@ -51,12 +53,6 @@ call pathogen#helptags()
 " ignora las extensiones de este tipo
     set   suffixes=.aux,.bak,.dvi,.gz,.idx,.log,.ps,.swp,.tar,.pyc,.sql3
 
-
-        
-" esconde mouse cuando se edita texto
-
-  "set mousehide
-
 " establece tab como wildcard para desplegar dirs y archivos
     set   wildchar=<TAB>
 
@@ -68,37 +64,10 @@ call pathogen#helptags()
  
     set backspace=2  
 
-"      set nu
-
 " Backups
 
     set backup
     set backupdir=$HOME/vimbackups
-
-"--------------------------------------------------
-" winmanager
-"-------------------------------------------------- 
-  "map <c-b> :WMToggle<CR>
-  "map <c-w><c-b> :BottomExplorerWindow<CR>
-  "map <c-w><c-f> :FirstExplorerWindow<CR>
-  map <c-h> :FirstExplorerWindow<CR>
-  map <c-j> :BottomExplorerWindow<CR>
-  let g:winManagerWidth=30
-  let g:defaultExplorer=0
-  let g:winManagerWindowLayout = 'FileExplorer,TagList|BufExplorer'
-  let g:persistentBehaviour=0
-  let g:TagsExplorer_title = "[Tag List]"
-  
-"--------------------------------------------------
-" MiniBufExplorer
-"-------------------------------------------------- 
-
-"    let g:miniBufExplMapWindowNavVim = 1 
-"    let g:miniBufExplMapWindowNavArrows = 1 
-"    let g:miniBufExplMapCTabSwitchBufs = 1 
-"    let g:miniBufExplModSelTarget = 1 
-"    let g:miniBufExplSplitToEdge = 0 
-"    let g:miniBufExplSplitBelow = 1
 
 "--------------------------------------------------------
 " NerdTree Config
@@ -109,10 +78,15 @@ call pathogen#helptags()
 "--------------------------------------------------------
 " Path de exctags
   "let Tlist_Ctags_Cmd = "/opt/local/bin/ctags"
-  let Tlist_Exit_OnlyWindow = 1
-  let Tlist_Auto_Refresh = 1 
-  map T :TaskList<CR>
-  map E :TlistToggle<CR>
+  "let Tlist_Exit_OnlyWindow = 1
+  "let Tlist_Auto_Refresh = 1 
+  "map E :TlistToggle<CR>
+
+"--------------------------------------------------------
+"" TaskList conf
+"--------------------------------------------------------
+  map <Leader>td <Plug>TaskList
+
 "--------------------------------------------------
 " corrector ortografico
 "-------------------------------------------------- 
@@ -166,10 +140,6 @@ call pathogen#helptags()
     nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr>  [N]
     " Uppercase first letter of sentences
     ":%s/[.!?]\_s\+\a/\U&\E/g
-"--------------------------------------------------
-" CSV Settings
-"-------------------------------------------------- 
-  "autocmd BufNewFile,BufRead *.csv setf csv
 
 "--------------------------------------------------
 " VimCommander mappings
@@ -181,6 +151,24 @@ call pathogen#helptags()
 " MacOsX pbcopy mappings
 "--------------------------------------------------
 map <Leader>gc :w !pbcopy<CR><CR>
+
+"--------------------------------------------------
+" PEP8
+"--------------------------------------------------
+let g:pep8_map='<leader>8'
+
+"--------------------------------------------------
+" pydoc
+"--------------------------------------------------
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+"--------------------------------------------------
+" Vimrope
+"--------------------------------------------------
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
 
 "--------------------------------------------------
 " Fugitive
@@ -202,6 +190,30 @@ map <Leader>gc :w !pbcopy<CR><CR>
 " Retab : TAB to spaces with shiftwidth and tabstop settings 
 "------------------------------------------------------------
   autocmd BufWritePre *.py retab
+
+"------------------------------------------------------------
+" py.test
+"------------------------------------------------------------
+  " Execute the tests
+  nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+  nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+  nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+  " cycle through test errors
+  nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+  nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+  nmap <silent><Leader>te <Esc>:Pytest error<CR>
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 "--------------------------------------------------
 " FuzzyFinder menu

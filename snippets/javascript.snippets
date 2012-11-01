@@ -1,0 +1,91 @@
+#####################################################
+# Bootstrap components
+#####################################################
+snippet btn-group-bar
+	<div class="btn-group">
+		<button class="btn">${1}</button>
+	  <button class="btn">${2}</button>
+		<button class="btn">${3}</button>
+	</div>
+snippet btn-group
+	<div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			Action
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<li><a href="#">Some link here</a></li>
+		</ul>
+	</div>
+snippet btn-group-split
+	<div class="btn-group">
+		<button class="btn">Action</button>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a href="#">Some link here</a></li>
+		</ul>
+	</div>
+snippet side-bar
+	<ul class="nav nav-list">
+		<li class="nav-header">List header</li>
+		<li> <a href="#"> <i class="icon-book"></i> Library </a> </li>
+		<li> <a href="#"> <i class="icon-pencil"></i> Pencil </a> </li>
+		<li> <a href="#"> <i class="icon-map-marker"></i> Pencil </a> </li>
+	</ul>
+snippet tabbable
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+			<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+				<p>I'm in Section 1.</p>
+			</div>
+			<div class="tab-pane" id="tab2">
+				<p>Howdy, I'm in Section 2.</p>
+			</div>
+		</div>
+	</div>
+snippet pagination
+	<div class="pagination">
+		<ul>
+			<li><a href="#">Prev</a></li>
+			<li class="active">
+				<a href="#">1</a>
+			</li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">Next</a></li>
+		</ul>
+	</div>
+snippet pager
+	<ul class="pager">
+		<li class="previous">
+			<a href="#">&larr; Older</a>
+		</li>
+		<li class="next">
+			<a href="#">Newer &rarr;</a>
+		</li>
+	</ul>
+snippet warning
+	<div class="alert">
+		<button class="close" data-dismiss="alert">×</button>
+		<strong>Warning!</strong> Best check yo self, you're not looking too good.
+	</div>
+snippet form
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>Legend text</legend>
+			<div class="control-group">
+				<label class="control-label" for="input01">Text input</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01">
+					<p class="help-block">Supporting help text</p>
+				</div>
+			</div>
+		</fieldset>
+	</form>
