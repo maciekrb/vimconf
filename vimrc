@@ -114,7 +114,7 @@ call pathogen#helptags()
 "--------------------------------------------------
 " Browser Settings
 "-------------------------------------------------- 
-    map \p :SearchUsing php 
+    "map \p :SearchUsing php 
 
     set background=dark
 
@@ -145,7 +145,7 @@ call pathogen#helptags()
 " VimCommander mappings
 "--------------------------------------------------
 
-  noremap <silent> <F11> :cal VimCommanderToggle()<CR>
+" noremap <silent> <F11> :cal VimCommanderToggle()<CR>
 
 "--------------------------------------------------
 " MacOsX pbcopy mappings
@@ -160,6 +160,7 @@ let g:pep8_map='<leader>8'
 "--------------------------------------------------
 " pydoc
 "--------------------------------------------------
+let g:pydoc_cmd = '/opt/local/bin/pydoc2.7' 
 au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
@@ -186,6 +187,12 @@ map <leader>r :RopeRename<CR>
   map <Leader>fc :FufCoverageFile<CR>
   map <Leader>fd :FufDir<CR>
   map <Leader>fr :FufMruFile<CR>
+
+"--------------------------------------------------
+" Ack finder
+"--------------------------------------------------
+  nmap <leader>a <Esc>:Ack!
+
 "------------------------------------------------------------
 " Retab : TAB to spaces with shiftwidth and tabstop settings 
 "------------------------------------------------------------
