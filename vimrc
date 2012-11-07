@@ -48,7 +48,7 @@ call pathogen#helptags()
 
 " Deshacer, 70 debe ser suficiente!!!
 
-    set undolevels=70
+    set undolevels=100
 
 " ignora las extensiones de este tipo
     set   suffixes=.aux,.bak,.dvi,.gz,.idx,.log,.ps,.swp,.tar,.pyc,.sql3
@@ -91,15 +91,15 @@ call pathogen#helptags()
 " corrector ortografico
 "-------------------------------------------------- 
 
-    let loaded_vimspell = 1 "disble vimspell
-    let spell_executable = "aspell"
-    let spell_options = ""
-    let spell_insert_mode = 0
-    let spell_aspell_tex_args = "-t"
-    let spell_root_menu = "-"
-    let spell_auto_type="tex,mail,cvs,text"
-    let spell_language_list = "spanish,en,polish"
-    "map ^s :w!<CR>:!aspell check %<CR>:e! %<CR>
+    "let loaded_vimspell = 1 "disble vimspell
+    "let spell_executable = "aspell"
+    "let spell_options = ""
+    "let spell_insert_mode = 0
+    "let spell_aspell_tex_args = "-t"
+    "let spell_root_menu = "-"
+    "let spell_auto_type="tex,mail,cvs,text"
+    "let spell_language_list = "spanish,en,polish"
+    ""map ^s :w!<CR>:!aspell check %<CR>:e! %<CR>
 
 "--------------------------------------------------
 " Status line 
@@ -116,7 +116,6 @@ call pathogen#helptags()
 "-------------------------------------------------- 
     "map \p :SearchUsing php 
 
-    set background=dark
 
 "--------------------------------------------------
 " Format XMLline 
@@ -151,6 +150,18 @@ call pathogen#helptags()
 " MacOsX pbcopy mappings
 "--------------------------------------------------
 map <Leader>gc :w !pbcopy<CR><CR>
+
+
+"--------------------------------------------------
+" pyflakes
+"--------------------------------------------------
+"let g:pyflakes_use_quickfix = 0
+"highlight clear SpellBad
+highlight SpellBad term=reverse ctermbg=Blue
+"highlight SpellCap term=reverse cterm=underline
+"highlight SpellRare term=reverse cterm=underline
+"highlight SpellLocal term=reverse cterm=underline
+set background=dark
 
 "--------------------------------------------------
 " PEP8
@@ -197,6 +208,7 @@ map <leader>r :RopeRename<CR>
 " Retab : TAB to spaces with shiftwidth and tabstop settings 
 "------------------------------------------------------------
   autocmd BufWritePre *.py retab
+  autocmd BufWritePre *.js retab
 
 "------------------------------------------------------------
 " py.test
@@ -229,4 +241,4 @@ EOF
 "highlight PmenuSel ctermfg=Yellow ctermbg=DarkBlue cterm=bold
 
 
- colorscheme graygreen
+"colorscheme graygreen
