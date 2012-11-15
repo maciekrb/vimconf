@@ -126,7 +126,7 @@ call pathogen#helptags()
 "--------------------------------------------------
 " Tidy HTML 
 "-------------------------------------------------- 
-    map <c-x><c-t> :1,$!tidy -indent -asxhtml -utf8 -omit - 2>/dev/null<CR>
+    map <leader>tidy :1,$!tidy -indent -wrap 120 -asxhtml -utf8 - 2>/dev/null<CR>
 
 "-------------------------------------------------- 
 " Case hacks
@@ -164,6 +164,12 @@ highlight SpellBad term=reverse ctermbg=Blue
 set background=dark
 
 "--------------------------------------------------
+" fuzzyfinder
+"--------------------------------------------------
+highlight Pmenu term=reverse ctermbg=Black ctermfg=Yellow
+highlight PmenuSel term=reverse ctermbg=Yellow ctermfg=DarkBlue cterm=Bold
+
+"--------------------------------------------------
 " PEP8
 "--------------------------------------------------
 let g:pep8_map='<leader>8'
@@ -185,19 +191,19 @@ map <leader>r :RopeRename<CR>
 "--------------------------------------------------
 " Fugitive
 "--------------------------------------------------
-  map <Leader>gs :Gstatus<CR>
-  map <Leader>gh :Gsdiff
-  map <Leader>gd :Gdiff<CR>
-  map <Leader>gl :Glog -- %<CR>
+  map <leader>gs :Gstatus<CR>
+  map <leader>gh :Gsdiff
+  map <leader>gd :Gdiff<CR>
+  map <leader>gl :Glog -- %<CR>
 
 "--------------------------------------------------
 " FuzzyFinder mappings
 "--------------------------------------------------
-  map <Leader>fb :FufBuffer<CR>
-  map <Leader>ff :FufFile<CR>
-  map <Leader>fc :FufCoverageFile<CR>
-  map <Leader>fd :FufDir<CR>
-  map <Leader>fr :FufMruFile<CR>
+  map <leader>fb :FufBuffer<CR>
+  map <leader>ff :FufFile<CR>
+  map <leader>fc :FufCoverageFile<CR>
+  map <leader>fd :FufDir<CR>
+  map <leader>fr :FufMruFile<CR>
 
 "--------------------------------------------------
 " Ack finder
