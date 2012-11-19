@@ -70,6 +70,18 @@ call pathogen#helptags()
     set backupdir=$HOME/vimbackups
 
 "--------------------------------------------------------
+" Omnicompletion + Supertab
+"--------------------------------------------------------
+ set ofu=syntaxcomplete#Complete
+ let g:SuperTabDefaultCompletionType = "context"
+
+"--------------------------------------------------------
+" Tagbar
+"--------------------------------------------------------
+ let g:tagbar_usearrows = 1
+ nnoremap <leader>l :TagbarToggle<CR>
+
+"--------------------------------------------------------
 " NerdTree Config
 "--------------------------------------------------------
   map <c-b> :NERDTreeToggle<CR>
@@ -227,6 +239,12 @@ map <leader>r :RopeRename<CR>
   nmap <silent><Leader>tn <Esc>:Pytest next<CR>
   nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
   nmap <silent><Leader>te <Esc>:Pytest error<CR>
+
+"------------------------------------------------------------
+" closetag 
+"------------------------------------------------------------
+  autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+  autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
