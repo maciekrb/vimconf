@@ -70,6 +70,12 @@ call pathogen#helptags()
     set backupdir=$HOME/vimbackups
 
 "--------------------------------------------------------
+" miniBufExplorer
+"--------------------------------------------------------
+  let g:miniBufExplMapCTabSwitchBufs = 1
+  let g:miniBufExplMapWindowNavVim = 1
+
+"--------------------------------------------------------
 " Omnicompletion + Supertab
 "--------------------------------------------------------
  set ofu=syntaxcomplete#Complete
