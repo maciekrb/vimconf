@@ -31,7 +31,7 @@ call pathogen#helptags()
     inoremap # X#
 " Copy indentation from the line above when starting newline
     set autoindent       
-    set foldmethod=indent
+    "set foldmethod=indent
     set foldlevel=99
 " =============================== Highlighting related ==========================================="
     syntax on
@@ -72,8 +72,12 @@ call pathogen#helptags()
 "--------------------------------------------------------
 " miniBufExplorer
 "--------------------------------------------------------
+  let g:loaded_minibufexplorer = 0
   let g:miniBufExplMapCTabSwitchBufs = 1
   let g:miniBufExplMapWindowNavVim = 1
+  "map <Leader>mbc :CMiniBufExplorer<cr>
+  "map <Leader>mbu :UMiniBufExplorer<cr>
+  "map <Leader>mbt :TMiniBufExplorer<cr>
 
 "--------------------------------------------------------
 " Omnicompletion + Supertab
