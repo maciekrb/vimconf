@@ -72,7 +72,7 @@ call pathogen#helptags()
 "--------------------------------------------------------
 " miniBufExplorer
 "--------------------------------------------------------
-  let g:loaded_minibufexplorer = 0
+  "let g:loaded_minibufexplorer = 0
   let g:miniBufExplMapCTabSwitchBufs = 1
   let g:miniBufExplMapWindowNavVim = 1
   "map <Leader>mbc :CMiniBufExplorer<cr>
@@ -255,18 +255,6 @@ map <leader>r :RopeRename<CR>
 "------------------------------------------------------------
   autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
   autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
-
-" Add the virtualenv's site-packages to vim path
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
 
 "--------------------------------------------------
 " FuzzyFinder menu

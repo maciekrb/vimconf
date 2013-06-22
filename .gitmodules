@@ -61,3 +61,12 @@
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/cocoa"]
+	path = bundle/cocoa
+	url = https://github.com/msanders/cocoa.vim.git
+[submodule "bundle/processing"]
+	path = bundle/processing
+	url = https://github.com/sophacles/vim-processing.git
+[submodule "vim-python-virtualenv"]
+	path = vim-python-virtualenv
+	url = git@github.com:lambdalisue/vim-python-virtualenv.git
