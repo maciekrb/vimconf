@@ -107,7 +107,7 @@ call pathogen#helptags()
 "--------------------------------------------------------
 "" TaskList conf
 "--------------------------------------------------------
-  map <Leader>td <Plug>TaskList
+  map T :TaskList<CR>
 
 "--------------------------------------------------
 " corrector ortografico
@@ -205,10 +205,22 @@ let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
 "--------------------------------------------------
+" Vim sessions
+"--------------------------------------------------
+set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
+
+"--------------------------------------------------
 " Vimrope
 "--------------------------------------------------
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
+map <leader>rj :RopeGotoDefinition<CR>
+map <leader>rr :RopeRename<CR>
+map <leader>rf :RopeFindFile<CR>
+map <leader>ra :RopeCodeAssist<CR>
+map <leader>rd :RopeShowDoc<CR>
+map <leader>ro :RopeFindOccurrences<CR>
+map <leader>rgc :RopeGenerateAutoimportCache<CR>
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
 
 "--------------------------------------------------
 " Fugitive
