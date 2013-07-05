@@ -73,3 +73,12 @@
 [submodule "OmniCppComplete"]
 	path = OmniCppComplete
 	url = git@github.com:vim-scripts/OmniCppComplete.git
+[submodule "vim-better-css-indent"]
+	path = vim-better-css-indent
+	url = git@github.com:miripiruni/vim-better-css-indent.git
+[submodule "bundle/vim-better-css-indent"]
+	path = bundle/vim-better-css-indent
+	url = git@github.com:miripiruni/vim-better-css-indent.git
+[submodule "bundle/vim-python-virtualenv"]
+	path = bundle/vim-python-virtualenv
+	url = git@github.com:vim-scripts/vim-python-virtualenv.git
