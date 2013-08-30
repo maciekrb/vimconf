@@ -82,3 +82,15 @@
 [submodule "bundle/vim-python-virtualenv"]
 	path = bundle/vim-python-virtualenv
 	url = git@github.com:vim-scripts/vim-python-virtualenv.git
+[submodule "bundle/json"]
+	path = bundle/json
+	url = https://github.com/vim-scripts/vim-json-bundle.git
+[submodule "bundle/virtualenv"]
+	path = bundle/virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git
+[submodule "python-mode"]
+	path = python-mode
+	url = git://github.com/klen/python-mode.git
+[submodule "bundle/python-mode"]
+	path = bundle/python-mode
+	url = https://github.com/klen/python-mode.git

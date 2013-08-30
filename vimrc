@@ -40,7 +40,7 @@ call pathogen#helptags()
 " Highlight search patterns (/ or ?)
     set hlsearch
 
-    filetype on
+    filetype off
     filetype plugin on
     filetype indent on
 " Work nicely with MacVim
@@ -72,7 +72,7 @@ call pathogen#helptags()
 "--------------------------------------------------------
 " miniBufExplorer
 "--------------------------------------------------------
-  "let g:loaded_minibufexplorer = 0
+  let g:loaded_minibufexplorer = 0
   let g:miniBufExplMapCTabSwitchBufs = 1
   let g:miniBufExplMapWindowNavVim = 1
   "map <Leader>mbc :CMiniBufExplorer<cr>
@@ -194,15 +194,15 @@ highlight PmenuSel term=reverse ctermbg=Yellow ctermfg=DarkBlue cterm=Bold
 "--------------------------------------------------
 " PEP8
 "--------------------------------------------------
-let g:pep8_map='<leader>8'
+"let g:pep8_map='<leader>8'
 
 "--------------------------------------------------
 " pydoc
 "--------------------------------------------------
-let g:pydoc_cmd = '/opt/local/bin/pydoc2.7' 
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
+"let g:pydoc_cmd = '/opt/local/bin/pydoc2.7' 
+"au FileType python set omnifunc=pythoncomplete#Complete
+"let g:SuperTabDefaultCompletionType = "context"
+"set completeopt=menuone,longest,preview
 
 "--------------------------------------------------
 " Vim sessions
@@ -212,15 +212,15 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 "--------------------------------------------------
 " Vimrope
 "--------------------------------------------------
-map <leader>rj :RopeGotoDefinition<CR>
-map <leader>rr :RopeRename<CR>
-map <leader>rf :RopeFindFile<CR>
-map <leader>ra :RopeCodeAssist<CR>
-map <leader>rd :RopeShowDoc<CR>
-map <leader>ro :RopeFindOccurrences<CR>
-map <leader>rgc :RopeGenerateAutoimportCache<CR>
-let ropevim_vim_completion=1
-let ropevim_extended_complete=1
+"map <leader>rj :RopeGotoDefinition<CR>
+"map <leader>rr :RopeRename<CR>
+"map <leader>rf :RopeFindFile<CR>
+"map <leader>ra :RopeCodeAssist<CR>
+"map <leader>rd :RopeShowDoc<CR>
+"map <leader>ro :RopeFindOccurrences<CR>
+"map <leader>rgc :RopeGenerateAutoimportCache<CR>
+"let ropevim_vim_completion=1
+"let ropevim_extended_complete=1
 
 "--------------------------------------------------
 " Fugitive
@@ -251,6 +251,22 @@ let ropevim_extended_complete=1
   autocmd BufWritePre *.js retab
 
 "------------------------------------------------------------
+" python-mode 
+"------------------------------------------------------------
+  let g:pymode_virtualenv = 1
+  let g:pymode_doc = 1
+
+  " code checking
+  let g:pymode_lint = 1
+  let g:pymode_lint_checker = "pyflakes,pylint"
+  let g:pymode_lint_ignore = "E11,W0311"
+
+  " Rope
+  let pymode_rope_autocomplete_map = '<S-tab>'
+  " Other stuff
+  let g:pymode_breakpoint_key = '<leader>b'
+
+"------------------------------------------------------------
 " py.test
 "------------------------------------------------------------
   " Execute the tests
@@ -268,6 +284,12 @@ let ropevim_extended_complete=1
   autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
   autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 
+"------------------------------------------------------------
+" JSON niceties
+"------------------------------------------------------------
+  "au BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
+  "au! Syntax json source $HOME/.vim/syntax/json.vim
+  au FileType json command -range=% -nargs=* Tidy <line1>,<line2>! /opt/local/bin/json_xs-5.12 -f json -t json-pretty
 "--------------------------------------------------
 " FuzzyFinder menu
 "--------------------------------------------------
