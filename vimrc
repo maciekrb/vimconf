@@ -31,7 +31,7 @@ call pathogen#helptags()
     inoremap # X#
 " Copy indentation from the line above when starting newline
     set autoindent       
-    "set foldmethod=indent
+    set foldmethod=indent
     set foldlevel=99
 " =============================== Highlighting related ==========================================="
     syntax on
@@ -212,15 +212,15 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 "--------------------------------------------------
 " Vimrope
 "--------------------------------------------------
-"map <leader>rj :RopeGotoDefinition<CR>
-"map <leader>rr :RopeRename<CR>
-"map <leader>rf :RopeFindFile<CR>
-"map <leader>ra :RopeCodeAssist<CR>
-"map <leader>rd :RopeShowDoc<CR>
-"map <leader>ro :RopeFindOccurrences<CR>
-"map <leader>rgc :RopeGenerateAutoimportCache<CR>
-"let ropevim_vim_completion=1
-"let ropevim_extended_complete=1
+map <leader>rj :RopeGotoDefinition<CR>
+map <leader>rr :RopeRename<CR>
+map <leader>rf :RopeFindFile<CR>
+map <leader>ra :RopeCodeAssist<CR>
+map <leader>rd :RopeShowDoc<CR>
+map <leader>ro :RopeFindOccurrences<CR>
+map <leader>rgc :RopeGenerateAutoimportCache<CR>
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
 
 "--------------------------------------------------
 " Fugitive
@@ -258,16 +258,18 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 
   " code checking
   let g:pymode_lint = 1
+  let g:pymode_lint_write = 0
   let g:pymode_lint_checker = "pyflakes,pylint"
-  let g:pymode_lint_ignore = "E11,W0311"
+  let g:pymode_lint_ignore = "E11,W0311,C0301,W0105"
 
   " Rope
   let pymode_rope_autocomplete_map = '<S-tab>'
   " Other stuff
   let g:pymode_breakpoint_key = '<leader>b'
+  nmap <leader>rl <Esc>:PyLint<CR>
 
 "------------------------------------------------------------
-" py.test
+" py.test 
 "------------------------------------------------------------
   " Execute the tests
   nmap <silent><Leader>tf <Esc>:Pytest file<CR>
@@ -277,6 +279,7 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
   nmap <silent><Leader>tn <Esc>:Pytest next<CR>
   nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
   nmap <silent><Leader>te <Esc>:Pytest error<CR>
+  nmap <silent><Leader>ts <Esc>:Pytest session<CR>
 
 "------------------------------------------------------------
 " closetag 

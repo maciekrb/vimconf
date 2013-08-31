@@ -33,7 +33,7 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/pyflakes"]
 	path = bundle/pyflakes
-	url = https://github.com/mitechie/pyflakes-pathogen.git
+	url = https://github.com/kevinw/pyflakes-vim.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
@@ -94,3 +94,9 @@
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
 	url = https://github.com/klen/python-mode.git
+[submodule "bundle/lustyexplorer"]
+	path = bundle/lustyexplorer
+	url = https://github.com/vim-scripts/LustyExplorer.git
+[submodule "bundle/vim-debug"]
+	path = bundle/vim-debug
+	url = https://github.com/jaredly/vim-debug.git
