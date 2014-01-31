@@ -54,7 +54,7 @@
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/closetag"]
 	path = bundle/closetag
-	url = git://github.com/docunext/closetag.vim.git
+	url = https://github.com/vim-scripts/closetag.vim.git
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
@@ -100,3 +100,12 @@
 [submodule "bundle/vim-debug"]
 	path = bundle/vim-debug
 	url = https://github.com/jaredly/vim-debug.git
+[submodule "bundle/funcoo"]
+	path = bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule "bundle/dash"]
+	path = bundle/dash
+	url = https://github.com/rizzatti/dash.vim.git
+[submodule "bundle/floobits"]
+	path = bundle/floobits
+	url = https://github.com/Floobits/floobits-vim

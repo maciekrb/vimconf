@@ -72,9 +72,10 @@ call pathogen#helptags()
 "--------------------------------------------------------
 " miniBufExplorer
 "--------------------------------------------------------
-  let g:loaded_minibufexplorer = 0
+  let g:loaded_minibufexplorer = 1
   let g:miniBufExplMapCTabSwitchBufs = 1
   let g:miniBufExplMapWindowNavVim = 1
+  map <Leader>b :MiniBufExplorer<cr>
   "map <Leader>mbc :CMiniBufExplorer<cr>
   "map <Leader>mbu :UMiniBufExplorer<cr>
   "map <Leader>mbt :TMiniBufExplorer<cr>
@@ -112,6 +113,8 @@ call pathogen#helptags()
 "--------------------------------------------------
 " corrector ortografico
 "-------------------------------------------------- 
+  nnoremap <leader>spellen :setlocal spell spelllang=en_us<CR>
+  nnoremap <leader>spelles :setlocal spell spelllang=es<CR>
 
     "let loaded_vimspell = 1 "disble vimspell
     "let spell_executable = "aspell"
@@ -209,18 +212,6 @@ highlight PmenuSel term=reverse ctermbg=Yellow ctermfg=DarkBlue cterm=Bold
 "--------------------------------------------------
 set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
 
-"--------------------------------------------------
-" Vimrope
-"--------------------------------------------------
-map <leader>rj :RopeGotoDefinition<CR>
-map <leader>rr :RopeRename<CR>
-map <leader>rf :RopeFindFile<CR>
-map <leader>ra :RopeCodeAssist<CR>
-map <leader>rd :RopeShowDoc<CR>
-map <leader>ro :RopeFindOccurrences<CR>
-map <leader>rgc :RopeGenerateAutoimportCache<CR>
-let ropevim_vim_completion=1
-let ropevim_extended_complete=1
 
 "--------------------------------------------------
 " Fugitive
@@ -255,18 +246,33 @@ let ropevim_extended_complete=1
 "------------------------------------------------------------
   let g:pymode_virtualenv = 1
   let g:pymode_doc = 1
+  let g:pymode_rope_completion=0
+  let g:pymode_rope_extend_complete=0
+  let g:pymode_indent = 0
 
   " code checking
   let g:pymode_lint = 1
   let g:pymode_lint_write = 0
   let g:pymode_lint_checker = "pyflakes,pylint"
-  let g:pymode_lint_ignore = "E11,W0311,C0301,W0105"
+  let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121"
 
   " Rope
-  let pymode_rope_autocomplete_map = '<S-tab>'
+  let g:pymode_rope_autocomplete_map = '<S-tab>'
   " Other stuff
   let g:pymode_breakpoint_key = '<leader>b'
+  "let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace(); # XXX BREAKPOINT'
   nmap <leader>rl <Esc>:PyLint<CR>
+
+"--------------------------------------------------
+" Vimrope
+"--------------------------------------------------
+  map <leader>rj :RopeGotoDefinition<CR>
+  map <leader>rr :RopeRename<CR>
+  map <leader>rf :RopeFindFile<CR>
+  map <leader>ra :RopeCodeAssist<CR>
+  map <leader>rd :RopeShowDoc<CR>
+  map <leader>ro :RopeFindOccurrences<CR>
+  map <leader>rgc :RopeGenerateAutoimportCache<CR>
 
 "------------------------------------------------------------
 " py.test 
@@ -282,10 +288,18 @@ let ropevim_extended_complete=1
   nmap <silent><Leader>ts <Esc>:Pytest session<CR>
 
 "------------------------------------------------------------
+" Dash search
+"------------------------------------------------------------
+  map <leader>d :Dash<CR>
+  let g:dash_map = {
+    \ 'python'     : 'python2',
+    \ 'javascript' : 'angularjs'
+  \ }
+"------------------------------------------------------------
 " closetag 
 "------------------------------------------------------------
-  autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
-  autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+  autocmd FileType html,htmldjango,jinjahtml let b:closetag_html_style=1
+  "autocmd FileType html,xhtml,xml,htmldjango,jinjahtml source ~/.vim/bundle/closetag/plugin/closetag.vim
 
 "------------------------------------------------------------
 " JSON niceties
@@ -301,3 +315,7 @@ let ropevim_extended_complete=1
 
 
 "colorscheme graygreen
+highlight DiffAdd term=reverse cterm=bold ctermbg=darkgreen ctermfg=white 
+highlight DiffChange term=reverse cterm=bold ctermbg=darkred ctermfg=lightgrey 
+highlight DiffText term=reverse cterm=bold ctermbg=red ctermfg=yellow
+highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black 
