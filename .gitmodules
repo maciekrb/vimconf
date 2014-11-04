@@ -109,3 +109,15 @@
 [submodule "bundle/floobits"]
 	path = bundle/floobits
 	url = https://github.com/Floobits/floobits-vim
+[submodule "bundle/gist-vim"]
+	path = bundle/gist-vim
+	url = git@github.com:mattn/gist-vim.git
+[submodule "bundle/webapi"]
+	path = bundle/webapi
+	url = git@github.com:mattn/webapi-vim.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "bundle/lusty"]
+	path = bundle/lusty
+	url = git@github.com:sjbach/lusty.git

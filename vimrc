@@ -26,7 +26,7 @@ call pathogen#helptags()
 " Causes TAB characters to not be used in the file for compression, and for only spaces to be used
     set expandtab
 " Activate smartindenting (indent after { )
-    set smartindent
+    "set smartindent @deprecated
 " smartindent rule: Skip the rule that eliminates indents from # starting lines
     inoremap # X#
 " Copy indentation from the line above when starting newline
@@ -40,42 +40,41 @@ call pathogen#helptags()
 " Highlight search patterns (/ or ?)
     set hlsearch
 
-    filetype off
-    filetype plugin on
-    filetype indent on
+    "filetype off
+    filetype plugin indent on
 " Work nicely with MacVim
     set clipboard=unnamed
 
-" Deshacer, 70 debe ser suficiente!!!
-
+" 100 UNDO levels should be normally enough
     set undolevels=100
 
-" ignora las extensiones de este tipo
+" Lower priority to these extensions 
     set   suffixes=.aux,.bak,.dvi,.gz,.idx,.log,.ps,.swp,.tar,.pyc,.sql3
 
-" establece tab como wildcard para desplegar dirs y archivos
-    set   wildchar=<TAB>
-
-" Hace shift-insert funcionar como en Xterm
+" shift-insert like good old Xterm
     map <S-Insert> <MiddleMouse>
     map! <S-Insert> <MiddleMouse>
 
-" Funciona el Backspace!!!!!
- 
+" Backspace behavior
     set backspace=2  
 
 " Backups
-
     set backup
     set backupdir=$HOME/vimbackups
 
+" Lusty needs this
+  set hidden
+
+"--------------------------------------------------------
+" GunDo
+"--------------------------------------------------------
+  nnoremap <leader>gu :GundoToggle<CR>
 "--------------------------------------------------------
 " miniBufExplorer
 "--------------------------------------------------------
-  let g:loaded_minibufexplorer = 1
+  let g:loaded_minibufexplorer = 0
   let g:miniBufExplMapCTabSwitchBufs = 1
   let g:miniBufExplMapWindowNavVim = 1
-  map <Leader>b :MiniBufExplorer<cr>
   "map <Leader>mbc :CMiniBufExplorer<cr>
   "map <Leader>mbu :UMiniBufExplorer<cr>
   "map <Leader>mbt :TMiniBufExplorer<cr>
@@ -134,7 +133,7 @@ call pathogen#helptags()
     set showcmd
 
     set laststatus=2
-    set   shell=/bin/bash
+    set shell=/bin/bash
 
 "--------------------------------------------------
 " Browser Settings
@@ -195,6 +194,11 @@ highlight Pmenu term=reverse ctermbg=Black ctermfg=Yellow
 highlight PmenuSel term=reverse ctermbg=Yellow ctermfg=DarkBlue cterm=Bold
 
 "--------------------------------------------------
+" vim-debug
+"--------------------------------------------------
+let g:vim_debug_disable_mappings = 1
+
+"--------------------------------------------------
 " PEP8
 "--------------------------------------------------
 "let g:pep8_map='<leader>8'
@@ -245,19 +249,23 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 " python-mode 
 "------------------------------------------------------------
   let g:pymode_virtualenv = 1
-  let g:pymode_doc = 1
+  let g:pymode_doc = 0
   let g:pymode_rope_completion=0
   let g:pymode_rope_extend_complete=0
   let g:pymode_indent = 0
+  let g:pymode_rope = 0
 
   " code checking
   let g:pymode_lint = 1
-  let g:pymode_lint_write = 0
+  let g:pymode_lint_on_write = 1
   let g:pymode_lint_checker = "pyflakes,pylint"
-  let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121"
+  let g:pymode_lint_checker = "pyflakes,pylint"
+  " add E501 for line width "
+  let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121" 
+
 
   " Rope
-  let g:pymode_rope_autocomplete_map = '<S-tab>'
+  "let g:pymode_rope_autocomplete_map = '<S-tab>'
   " Other stuff
   let g:pymode_breakpoint_key = '<leader>b'
   "let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace(); # XXX BREAKPOINT'
@@ -286,6 +294,11 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
   nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
   nmap <silent><Leader>te <Esc>:Pytest error<CR>
   nmap <silent><Leader>ts <Esc>:Pytest session<CR>
+
+"-----------------------------------------------------------
+" gist-vim
+"------------------------------------------------------------
+ let g:gist_post_private = 1
 
 "------------------------------------------------------------
 " Dash search
