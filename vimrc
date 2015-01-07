@@ -4,6 +4,8 @@
 " Pathogen config
 call pathogen#infect()
 call pathogen#helptags()
+" Set xterm-256 compat
+   set t_Co=256
 " FreeBSD Security advice
     set nomodeline
 " =================================== Font and scren size ========================================"
@@ -248,12 +250,14 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 "------------------------------------------------------------
 " python-mode 
 "------------------------------------------------------------
+  let g:pymode = 1
   let g:pymode_virtualenv = 1
   let g:pymode_doc = 0
   let g:pymode_rope_completion=0
   let g:pymode_rope_extend_complete=0
+  let g:pymode_folding = 1
   let g:pymode_indent = 0
-  let g:pymode_rope = 0
+  let g:pymode_rope = 1
 
   " code checking
   let g:pymode_lint = 1
@@ -311,8 +315,8 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 "------------------------------------------------------------
 " closetag 
 "------------------------------------------------------------
-  autocmd FileType html,htmldjango,jinjahtml let b:closetag_html_style=1
-  "autocmd FileType html,xhtml,xml,htmldjango,jinjahtml source ~/.vim/bundle/closetag/plugin/closetag.vim
+  let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+  let b:closetag_html_style=1
 
 "------------------------------------------------------------
 " JSON niceties
@@ -320,6 +324,12 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
   "au BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
   "au! Syntax json source $HOME/.vim/syntax/json.vim
   au FileType json command -range=% -nargs=* Tidy <line1>,<line2>! /opt/local/bin/json_xs-5.12 -f json -t json-pretty
+
+"------------------------------------------------------------
+"Markdown niceties
+"------------------------------------------------------------
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 "--------------------------------------------------
 " FuzzyFinder menu
 "--------------------------------------------------
