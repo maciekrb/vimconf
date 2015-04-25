@@ -7,11 +7,17 @@
 "----------------------------------------------------------------------------
 " Base config
 "----------------------------------------------------------------------------
-" {{{
-" Pathogen config
+" 
+" Pathogen load {{{
+filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
+filetype plugin indent on
+syntax on
+" }}}
+
+" Config opts {{{
 let mapleader=","
 
 " Set xterm-256 compat
@@ -53,10 +59,6 @@ set autoindent
 set foldmethod=indent
 set foldlevel=99
   
-" Syntax hightlighting ON
-syntax on
-filetype plugin indent on
-
 " Highlight parenthesis and braces matching pair
 set showmatch
 
@@ -114,7 +116,7 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap <leader>a <Esc>:Ack!
 
 " NerdTree Config
-noremap <leader>b :NERDTreeToggle<cr>
+noremap <leader>n :NERDTreeToggle<cr>
 
 " Dash documentation
 noremap <leader>d :Dash<cr>
@@ -149,23 +151,6 @@ nnoremap L $
 " MacOsX pbcopy mappings
 vnoremap <leader>pc :w !pbcopy<cr><cr>
 
-" Vimrope {{{
-" Vimrope PyLInt
-nnoremap <leader>rl <Esc>:PyLint<cr>
-
-" Vimrope Go To definition
-noremap <leader>rj :RopeGotoDefinition<cr>
-
-" Vimrope Go refactor
-noremap <leader>rr :RopeRename<cr>
-
-noremap <leader>rf :RopeFindFile<cr>
-noremap <leader>ra :RopeCodeAssist<cr>
-noremap <leader>rd :RopeShowDoc<cr>
-noremap <leader>ro :RopeFindOccurrences<cr>
-noremap <leader>rgc :PymodeRopeRegenerate<cr>
-" }}}
-
 " Spellcheck language EN / ES {{{
 nnoremap <leader>spellen :setlocal spell spelllang=en_us<cr>
 nnoremap <leader>spelles :setlocal spell spelllang=es<cr>
@@ -179,19 +164,18 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 " }}}
 
-"py.test Execute the tests in current file {{{
+"py.test  {{{
+" Execute the tests in current file
 nnoremap <silent><Leader>tf <Esc>:Pytest file<cr>
-" }}}
 
-"py.test Execute the tests in current class {{{
+"py.test Execute the tests in current class
 nnoremap <silent><Leader>tc <Esc>:Pytest class<cr>
-" }}}
 
-"py.test Execute the test in current method {{{
+"py.test Execute the test in current method 
 nnoremap <silent><Leader>tm <Esc>:Pytest method<cr>
-" }}}
 
-" cycle through test errors {{{
+
+" cycle through test errors 
 nnoremap <silent><Leader>tn <Esc>:Pytest next<cr>
 nnoremap <silent><Leader>tp <Esc>:Pytest previous<cr>
 nnoremap <silent><Leader>te <Esc>:Pytest error<cr>
@@ -202,11 +186,11 @@ nnoremap <silent><Leader>ts <Esc>:Pytest session<cr>
 noremap <leader>tidy :1,$!tidy -indent -wrap 120 -asxhtml -utf8 - 2>/dev/null<cr>
 " }}}
 
-" titlise a line {{{
+" Titlising {{{
+" titlise a line
 nnoremap <leader>ul :s/.*/\L&/<bar>:s/\<./\u&/g<cr>  [N]
-" }}}
 
-" Title Case A Line Or Selection (better) {{{
+" Title Case A Line Or Selection (better)
 vnoremap <leader>us :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/ge<cr> [N]
 " }}}
 
@@ -220,7 +204,7 @@ nnoremap <leader>v <Plug>TaskList
 " }}}
 
 "----------------------------------------------------------------------------
-"========================= Plugin conf ======================
+" Plugin conf 
 "----------------------------------------------------------------------------
 
 " closetag  {{{
@@ -274,29 +258,26 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " python-mode  {{{
 let g:pymode = 1
-let g:pymode_virtualenv = 1
-let g:pymode_doc = 0
-let g:pymode_rope_completion=0
-let g:pymode_rope_extend_complete=0
-let g:pymode_folding = 0
-let g:pymode_indent = 0
-let g:pymode_rope = 1
-
-" code checking
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_checker = "pyflakes,pylint"
-let g:pymode_lint_checker = "pyflakes,pylint"
-" add E501 for line width "
-let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121" 
-" }}}
-
-" Rope {{{
-"let g:pymode_rope_autocomplete_map = '<S-tab>'
-" Other stuff
 let g:pymode_breakpoint_key = '<leader>b'
-"let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace(); # XXX BREAKPOINT'
+let g:pymode_doc = 1
+let g:pymode_folding = 1
+let g:pymode_indent = 0
+let g:pymode_lint = 1
+let g:pymode_lint_signs = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_checker = "pyflakes,pylint,mccabe"
+let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
+let g:pytmode_motion = 1
+let g:pymode_options = 1
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 0
+let g:pymode_rope_extend_complete = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_virtualenv = 1
+
 " }}}
+
 
 " Tagbar {{{
  let g:tagbar_usearrows = 1
