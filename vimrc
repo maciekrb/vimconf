@@ -124,6 +124,9 @@ noremap <leader>d :Dash<cr>
 " Quickly edit vimrc in split window
 nnoremap <leader>ev :split $MYVIMRC<cr>
 
+" Format JSON
+noremap <leader>fjson :1,$!python -mjson.tool<cr>
+
 " Format XML
 noremap <leader>fxml :1,$!xmllint --format --recover - 2>/dev/null<cr>
 
@@ -158,6 +161,10 @@ nnoremap <leader>spelles :setlocal spell spelllang=es<cr>
 
 " Quickly source vimrc {{{
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" }}}
+"
+" Run Lint via pymode {{{
+nnoremap <leader>sy :PymodeLint<cr>
 " }}}
 
 " Toggle tag bar {{{
@@ -232,20 +239,8 @@ let g:miniBufExplMapWindowNavVim = 1
 "map <Leader>mbt :TMiniBufExplorer<cr>
 " }}}
 
-" Omnicompletion + Supertab {{{
-set ofu=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-" }}}
-
 " PEP8 {{{
 "let g:pep8_map='<leader>8'
-" }}}
-
-" pydoc {{{
-"let g:pydoc_cmd = '/opt/local/bin/pydoc2.7' 
-"au FileType python set omnifunc=pythoncomplete#Complete
-"let g:SuperTabDefaultCompletionType = "context"
-"set completeopt=menuone,longest,preview
 " }}}
 
 " pyflakes {{{
@@ -264,7 +259,7 @@ let g:pymode_folding = 1
 let g:pymode_indent = 0
 let g:pymode_lint = 1
 let g:pymode_lint_signs = 1
-let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_write = 0
 let g:pymode_lint_checker = "pyflakes,pylint,mccabe"
 let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
 let g:pytmode_motion = 1
@@ -278,7 +273,11 @@ let g:pymode_virtualenv = 1
 
 " }}}
 
-
+" jedi {{{
+let g:jedi#completions_command = '<C-n>'
+let g:jedy#popup_on_dot = 0 
+" }}}
+"
 " Tagbar {{{
  let g:tagbar_usearrows = 1
 " }}}
@@ -333,6 +332,15 @@ augroup vimfile_folding
 augroup END
 " }}}
 
+" Python SuperTab completion {{{
+"augroup python_complete
+  "autocmd!
+  ""autocmd filetype python let g:jedi#popup_on_dot = 1
+  ""autocmd filetype python let g:SuperTabDefaultCompletionType = "context"
+  "autocmd filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"augroup end
+" }}}
+"
 "------------------------------------------------------------
 " JSON niceties
 "------------------------------------------------------------

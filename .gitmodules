@@ -46,9 +46,6 @@
 [submodule "bundle/tasklist"]
 	path = bundle/tasklist
 	url = https://github.com/vim-scripts/TaskList.vim.git
-[submodule "bundle/ack"]
-	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
@@ -124,3 +121,9 @@
 [submodule "bundle/pigsyntax"]
 	path = bundle/pigsyntax
 	url = git@github.com:motus/pig.vim.git
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = git@github.com:mileszs/ack.vim.git
+[submodule "bundle/jedi"]
+	path = bundle/jedi
+	url = https://github.com/davidhalter/jedi-vim.git
