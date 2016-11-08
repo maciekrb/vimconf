@@ -27,6 +27,9 @@ set t_Co=256
 set nomodeline
 set shell=/opt/local/bin/zsh
 
+" Be fast with long files without line breaks
+set synmaxcol=200
+
 " Session opts 
 set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
 
@@ -35,6 +38,10 @@ set ch=2
 set showmode
 set showcmd
 set laststatus=2
+
+" Show current line number
+set number
+set relativenumber
 
 " Start scroll up/down when cursor is 4 lines before viewport start/end
 set scrolloff=4  
@@ -56,6 +63,7 @@ set expandtab
 
 " Copy indentation from the line above when starting newline
 set autoindent       
+set smartindent
 set foldmethod=indent
 set foldlevel=99
   
@@ -67,6 +75,9 @@ set hlsearch
 
 " Work nicely with MacVim
 set clipboard=unnamed
+
+" Faster redrawing
+set ttyfast
 
 " 100 UNDO levels should be normally enough
 set undolevels=100
@@ -119,7 +130,7 @@ nnoremap <leader>a <Esc>:Ack!
 noremap <leader>n :NERDTreeToggle<cr>
 
 " Dash documentation
-noremap <leader>d :Dash<cr>
+noremap <leader>- :Dash<cr>
 
 " Quickly edit vimrc in split window
 nnoremap <leader>ev :split $MYVIMRC<cr>
@@ -129,18 +140,6 @@ noremap <leader>fjson :1,$!python -mjson.tool<cr>
 
 " Format XML
 noremap <leader>fxml :1,$!xmllint --format --recover - 2>/dev/null<cr>
-
-" FuGitive git diff
-noremap <leader>gd :Gdiff<cr>
-
-" FuGitive git sdiff
-noremap <leader>gh :Gsdiff
-
-" FuGitive git log
-noremap <leader>gl :Glog -- %<cr>
-
-" FuGitive git status
-noremap <leader>gs :Gstatus<cr>
 
 " GunDo
 nnoremap <leader>gu :GundoToggle<CR>
@@ -153,6 +152,9 @@ nnoremap L $
 
 " MacOsX pbcopy mappings
 vnoremap <leader>pc :w !pbcopy<cr><cr>
+
+" JSHint
+noremap <leader>jsh :JSHintUpdate<CR>
 
 " Spellcheck language EN / ES {{{
 nnoremap <leader>spellen :setlocal spell spelllang=en_us<cr>
@@ -210,6 +212,21 @@ noremap! <S-Insert> <MiddleMouse>
 nnoremap <leader>v <Plug>TaskList
 " }}}
 
+" Go conf {{{
+nnoremap ,godb  <Plug>(go-doc-browser) * :<C-U>call go#doc#OpenBrowser()<CR>
+nnoremap ,gods  <Plug>(go-doc-split) * :<C-U>call go#doc#Open("new", "split")<CR>
+nnoremap ,godv  <Plug>(go-doc-vertical) * :<C-U>call go#doc#Open("vnew", "vsplit")<CR>
+nnoremap ,godt  <Plug>(go-doc-tab) * :<C-U>call go#doc#Open("tabnew", "tabe")<CR>
+nnoremap ,god  <Plug>(go-doc) * :<C-U>call go#doc#Open("new", "split")<CR>
+nnoremap ,got  <Plug>(go-def-tab) * :<C-U>call go#def#JumpMode("tab")<CR>
+nnoremap ,gos  <Plug>(go-def-split) * :<C-U>call go#def#JumpMode("split")<CR>
+nnoremap ,gov  <Plug>(go-def-vertical) * :<C-U>call go#def#JumpMode("vsplit")<CR>
+nnoremap ,gox  <Plug>(go-def) * :<C-U>call go#def#Jump()<CR>
+nnoremap ,goi  <Plug>(go-import) * :<C-U>call go#import#SwitchImport(1, '', expand('<cword>'), '')<CR>
+nnoremap ,gob  <Plug>(go-build) * :<C-U>call go#cmd#Build(!g:go_jump_to_error)<CR>
+nnoremap ,gor  <Plug>(go-run) * :<C-U>call go#cmd#Run(!g:go_jump_to_error, '%')<CR>
+" }}}
+
 "----------------------------------------------------------------------------
 " Plugin conf 
 "----------------------------------------------------------------------------
@@ -237,6 +254,10 @@ let g:miniBufExplMapWindowNavVim = 1
 "map <Leader>mbc :CMiniBufExplorer<cr>
 "map <Leader>mbu :UMiniBufExplorer<cr>
 "map <Leader>mbt :TMiniBufExplorer<cr>
+" }}}
+
+" fugitive {{{
+set diffopt+=vertical
 " }}}
 
 " PEP8 {{{
@@ -277,7 +298,26 @@ let g:pymode_virtualenv = 1
 let g:jedi#completions_command = '<C-n>'
 let g:jedy#popup_on_dot = 0 
 " }}}
-"
+
+" syntastic {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_javascript_mri_args = "--strict"
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
+noremap <leader>ll :SyntasticCheck<CR>
+noremap <leader>loff :SyntasticToggleMode<CR>
+
+" }}}
+
 " Tagbar {{{
  let g:tagbar_usearrows = 1
 " }}}
