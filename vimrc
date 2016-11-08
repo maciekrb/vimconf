@@ -264,24 +264,16 @@ set diffopt+=vertical
 "let g:pep8_map='<leader>8'
 " }}}
 
-" pyflakes {{{
-"let g:pyflakes_use_quickfix = 0
-"highlight clear SpellBad
-"highlight SpellCap term=reverse cterm=underline
-"highlight SpellRare term=reverse cterm=underline
-"highlight SpellLocal term=reverse cterm=underline
-" }}}
-
 " python-mode  {{{
 let g:pymode = 1
 let g:pymode_breakpoint_key = '<leader>b'
 let g:pymode_doc = 1
 let g:pymode_folding = 1
 let g:pymode_indent = 0
-let g:pymode_lint = 1
+let g:pymode_lint = 0 " We use syntastic instead
 let g:pymode_lint_signs = 1
 let g:pymode_lint_on_write = 0
-let g:pymode_lint_checker = "pyflakes,pylint,mccabe"
+let g:pymode_lint_checker = "pylint,mccabe"
 let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
 let g:pytmode_motion = 1
 let g:pymode_options = 1
@@ -312,7 +304,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_mri_args = "--strict"
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 noremap <leader>ll :SyntasticCheck<CR>
 noremap <leader>loff :SyntasticToggleMode<CR>
 
