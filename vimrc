@@ -156,6 +156,24 @@ vnoremap <leader>pc :w !pbcopy<cr><cr>
 " JSHint
 noremap <leader>jsh :JSHintUpdate<CR>
 
+" Run in node
+noremap <leader>rn :Shell node %<cr>
+
+function! s:ExecuteInShell(command)
+  let command = join(map(split(a:command), 'expand(v:val)'))
+  let winnr = bufwinnr('^' . command . '$')
+  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+  echo 'Execute ' . command . '...'
+  silent! execute 'silent %!'. command
+  silent! execute 'resize ' . line('$')
+  silent! redraw
+  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+  echo 'Shell command ' . command . ' executed.'
+endfunction
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
 " Spellcheck language EN / ES {{{
 nnoremap <leader>spellen :setlocal spell spelllang=en_us<cr>
 nnoremap <leader>spelles :setlocal spell spelllang=es<cr>
@@ -245,6 +263,7 @@ let g:dash_map = {
 
 " gist-vim {{{
 let g:gist_post_private = 1
+let g:gist_show_privates = 1
 " }}}
 
 " miniBufExplorer {{{
@@ -258,6 +277,8 @@ let g:miniBufExplMapWindowNavVim = 1
 
 " fugitive {{{
 set diffopt+=vertical
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+"set statusline+=%{fugitive#statusline()}
 " }}}
 
 " PEP8 {{{
@@ -267,14 +288,14 @@ set diffopt+=vertical
 " python-mode  {{{
 let g:pymode = 1
 let g:pymode_breakpoint_key = '<leader>b'
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_folding = 1
 let g:pymode_indent = 0
 let g:pymode_lint = 0 " We use syntastic instead
 let g:pymode_lint_signs = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_checker = "pylint,mccabe"
-let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
+"let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
 let g:pytmode_motion = 1
 let g:pymode_options = 1
 let g:pymode_rope = 1
@@ -303,6 +324,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_mri_args = "--strict"
+
+let g:syntastic_typescript_checkers = ['tslint']
 
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }

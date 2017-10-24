@@ -121,9 +121,6 @@
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = git@github.com:mileszs/ack.vim.git
-[submodule "bundle/jedi"]
-	path = bundle/jedi
-	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "bundle/apiblueprint"]
 	path = bundle/apiblueprint
 	url = https://github.com/kylef/apiblueprint.vim.git
