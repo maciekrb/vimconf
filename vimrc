@@ -289,12 +289,12 @@ set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 let g:pymode = 1
 let g:pymode_breakpoint_key = '<leader>b'
 let g:pymode_doc = 0
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:pymode_indent = 0
 let g:pymode_lint = 0 " We use syntastic instead
 let g:pymode_lint_signs = 1
 let g:pymode_lint_on_write = 0
-let g:pymode_lint_checker = "pylint,mccabe"
+let g:pymode_lint_checker = "pylint"
 "let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
 let g:pytmode_motion = 1
 let g:pymode_options = 1
@@ -302,9 +302,45 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_extend_complete = 0
 let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
+let g:pymode_syntax_all = 0
 let g:pymode_virtualenv = 1
 
+" }}}
+
+" Google Python style guide {{{
+setlocal indentexpr=GetGooglePythonIndent(v:lnum)
+let s:maxoff = 50 " maximum number of lines to look backwards.
+
+function GetGooglePythonIndent(lnum)
+
+  " Indent inside parens.
+  " Align with the open paren unless it is at the end of the line.
+  " E.g.
+  "   open_paren_not_at_EOL(100,
+  "                         (200,
+  "                          300),
+  "                         400)
+  "   open_paren_at_EOL(
+  "       100, 200, 300, 400)
+  call cursor(a:lnum, 1)
+  let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
+        \ "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
+        \ . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
+        \ . " =~ '\\(Comment\\|String\\)$'")
+  if par_line > 0
+    call cursor(par_line, 1)
+    if par_col != col("$") - 1
+      return par_col
+    endif
+  endif
+
+  " Delegate the rest to the original function.
+  return GetPythonIndent(a:lnum)
+
+endfunction
+
+let pyindent_nested_paren="&sw*2"
+let pyindent_open_paren="&sw*2"
 " }}}
 
 " jedi {{{
@@ -354,6 +390,10 @@ let g:vim_debug_disable_mappings = 1
 ""map ^s :w!<CR>:!aspell check %<CR>:e! %<CR>
 " }}}
 
+" VimWiki {{{
+let vimwiki_list = [{'path': '~/.vimwiki'}]
+" }}}
+
 "----------------------------------------------------------------------------
 " Auto commands 
 "----------------------------------------------------------------------------
@@ -368,7 +408,7 @@ augroup END
 " Set file types and fold methods for different types of files {{{
 augroup file_types
   autocmd!
-  autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown foldmethod=manual
+  autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown foldmethod=manual textwidth=90
   autocmd BufRead,BufNewFile *.json setlocal filetype=json foldmethod=syntax
 augroup END
 " }}}
