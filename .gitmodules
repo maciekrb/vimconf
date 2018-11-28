@@ -55,15 +55,6 @@
 [submodule "bundle/processing"]
 	path = bundle/processing
 	url = https://github.com/sophacles/vim-processing.git
-[submodule "vim-python-virtualenv"]
-	path = vim-python-virtualenv
-	url = git@github.com:lambdalisue/vim-python-virtualenv.git
-[submodule "OmniCppComplete"]
-	path = OmniCppComplete
-	url = git@github.com:vim-scripts/OmniCppComplete.git
-[submodule "vim-better-css-indent"]
-	path = vim-better-css-indent
-	url = git@github.com:miripiruni/vim-better-css-indent.git
 [submodule "bundle/vim-better-css-indent"]
 	path = bundle/vim-better-css-indent
 	url = git@github.com:miripiruni/vim-better-css-indent.git
@@ -76,12 +67,6 @@
 [submodule "bundle/virtualenv"]
 	path = bundle/virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
-[submodule "python-mode"]
-	path = python-mode
-	url = git://github.com/klen/python-mode.git
-[submodule "bundle/python-mode"]
-	path = bundle/python-mode
-	url = https://github.com/klen/python-mode.git
 [submodule "bundle/lustyexplorer"]
 	path = bundle/lustyexplorer
 	url = https://github.com/vim-scripts/LustyExplorer.git
@@ -91,12 +76,6 @@
 [submodule "bundle/funcoo"]
 	path = bundle/funcoo
 	url = https://github.com/rizzatti/funcoo.vim.git
-[submodule "bundle/dash"]
-	path = bundle/dash
-	url = https://github.com/rizzatti/dash.vim.git
-[submodule "bundle/floobits"]
-	path = bundle/floobits
-	url = https://github.com/Floobits/floobits-vim
 [submodule "bundle/gist-vim"]
 	path = bundle/gist-vim
 	url = git@github.com:mattn/gist-vim.git
@@ -115,15 +94,9 @@
 [submodule "bundle/vim-closetag"]
 	path = bundle/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
-[submodule "bundle/pigsyntax"]
-	path = bundle/pigsyntax
-	url = git@github.com:motus/pig.vim.git
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = git@github.com:mileszs/ack.vim.git
-[submodule "bundle/apiblueprint"]
-	path = bundle/apiblueprint
-	url = https://github.com/kylef/apiblueprint.vim.git
 [submodule "bundle/coffee-script"]
 	path = bundle/coffee-script
 	url = git@github.com:kchmck/vim-coffee-script.git
@@ -145,3 +118,12 @@
 [submodule "bundle/vimwiki"]
 	path = bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "bundle/fzf.vim"]
+	path = bundle/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "bundle/vim-codefmt"]
+	path = bundle/vim-codefmt
+	url = git@github.com:google/vim-codefmt.git
+[submodule "bundle/vim-maktaba"]
+	path = bundle/vim-maktaba
+	url = git@github.com:google/vim-maktaba.git
