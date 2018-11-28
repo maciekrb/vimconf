@@ -25,7 +25,7 @@ set t_Co=256
 
 " FreeBSD Security advice
 set nomodeline
-set shell=/opt/local/bin/zsh
+set shell=/usr/local/bin/zsh
 
 " Be fast with long files without line breaks
 set synmaxcol=200
@@ -81,6 +81,9 @@ set ttyfast
 
 " 100 UNDO levels should be normally enough
 set undolevels=100
+
+" fzf to runtime path
+set rtp+=/Users/maciekrb/Lib/GO/src/github.com/junegunn/fzf/bin/fzf
 
 " Lower priority to these extensions 
 set suffixes=.aux,.bak,.dvi,.gz,.idx,.log,.ps,.swp,.tar,.pyc,.sql3
@@ -286,6 +289,7 @@ set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 " }}}
 
 " python-mode  {{{
+let g:pymode_python = 'python3'
 let g:pymode = 1
 let g:pymode_breakpoint_key = '<leader>b'
 let g:pymode_doc = 0
@@ -298,7 +302,7 @@ let g:pymode_lint_checker = "pylint"
 "let g:pymode_lint_ignore = "E11,W0311,C0301,W0105,E121,E501" 
 let g:pytmode_motion = 1
 let g:pymode_options = 1
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_extend_complete = 0
 let g:pymode_syntax = 1
@@ -378,6 +382,20 @@ noremap <leader>loff :SyntasticToggleMode<CR>
 let g:vim_debug_disable_mappings = 1
 " }}}
 
+" vim-codefmt {{{
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+augroup END
+" }}}
+"
 " Vimspell {{{
 "let loaded_vimspell = 1 "disble vimspell
 "let spell_executable = "aspell"
@@ -442,3 +460,11 @@ augroup END
 "------------------------------------------------------------
 "au! Syntax json source $HOME/.vim/syntax/json.vim
 "au FileType json command -range=% -nargs=* Tidy <line1>,<line2>! /opt/local/bin/json_xs-5.12 -f json -t json-pretty
+
+"------------------------------------------------------------
+" Custom functions
+"------------------------------------------------------------
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang Buku
+  \ call fzf#vim#grep(
+  \   '~/.virtualenvs/main/bin/python ~/.virtualenvs/main/bin/buku -t --np ', 0, <bang>0)
